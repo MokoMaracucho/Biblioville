@@ -1,0 +1,52 @@
+package com.oc.biblioville.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.oc.biblioville.entity.Utilisateur;
+import com.oc.biblioville.service.UtilisateurService;
+
+@RestController
+@RequestMapping(path="utilisateur")
+public class UtilisateurController {
+
+    private final UtilisateurService utilisateurService;
+
+    @Autowired
+    public UtilisateurController(UtilisateurService utilisateurService) {
+        this.utilisateurService = utilisateurService;
+    }
+
+    @GetMapping
+    public List<Utilisateur> getUtilisateurs() {
+        return utilisateurService.getUtilisateurs();
+    }
+
+    @PostMapping
+    public void addNewUtilisateur(@RequestBody Utilisateur utilisateur) {
+        utilisateurService.addNewUtilisateur(utilisateur);
+    }
+
+    @DeleteMapping(path="{idUtilisateur}")
+    public void deleteUtilisateur(@PathVariable("idUtilisateur") Long idUtilisateur) {
+        utilisateurService.deleteUtilisateur(idUtilisateur);
+    }
+
+    @PutMapping(path="{idUtilisateur}")
+    public void updateUtilisateur(
+            @PathVariable("idUtilisateur") Long idUtilisateur,
+            @RequestParam(required=false) String emailUtilisateur,
+            @RequestParam(required=false) String MotPasseUtilisateur) {
+        utilisateurService.updateUtilisateur(idUtilisateur, emailUtilisateur, MotPasseUtilisateur);
+    }
+}

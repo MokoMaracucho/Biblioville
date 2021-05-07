@@ -1,4 +1,4 @@
-package entity;
+package com.oc.biblioville.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

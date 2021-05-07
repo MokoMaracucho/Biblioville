@@ -4,9 +4,5 @@ CREATE TABLE tb_utilisateurs (
   mot_passe_utilisateur VARCHAR(50) NOT NULL
 );
 
-INSERT INTO tb_utilisateurs (
-  email_utilisateur,
-  mot_passe_utilisateur
-)
-VALUES ('desmoulin.federico@gmail.com', 'MotPasse'),
-VALUES ('desmoulin.federico@gmail.com', 'MotPasse');
+INSERT INTO tb_utilisateurs (email_utilisateur, mot_passe_utilisateur) VALUES ('desmoulin.federico@gmail.com', 'MotPasse');
+INSERT INTO tb_utilisateurs (email_utilisateur, mot_passe_utilisateur) VALUES ('desmoulin.mathieu@gmail.com', 'MotPasse');
