@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="tb_utilisateurs")
 public class Utilisateur {
 
     @Id
@@ -24,7 +24,7 @@ public class Utilisateur {
     )
 	@Column(name="id_utilisateur", updatable=false)
     private Long idUtilisateur;
-	@Column(name="emnail_utilisateur")
+	@Column(name="email_utilisateur")
     private String emailUtilisateur;
 	@Column(name="mot_passe_utilisateur")
     private String motPasseUtilisateur;
