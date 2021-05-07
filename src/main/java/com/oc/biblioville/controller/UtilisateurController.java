@@ -37,12 +37,12 @@ public class UtilisateurController {
         utilisateurService.addNewUtilisateur(utilisateur);
     }
 
-    @DeleteMapping(path="{idUtilisateur}")
+    @DeleteMapping(path="{id_utilisateur}")
     public void deleteUtilisateur(@PathVariable("idUtilisateur") Long idUtilisateur) {
         utilisateurService.deleteUtilisateur(idUtilisateur);
     }
 
-    @PutMapping(path="{idUtilisateur}")
+    @PutMapping(path="{id_utilisateur}")
     public void updateUtilisateur(
             @PathVariable("idUtilisateur") Long idUtilisateur,
             @RequestParam(required=false) String emailUtilisateur,
