@@ -27,9 +27,14 @@ public class UtilisateurController {
         this.utilisateurService = utilisateurService;
     }
 
-    @GetMapping
-    public List<Utilisateur> getUtilisateurs() {
-        return utilisateurService.getUtilisateurs();
+    @GetMapping(path="listeUtilisateurs")
+    public List<Utilisateur> listeUtilisateurs() {
+        return utilisateurService.listeUtilisateurs();
+    }
+
+    @GetMapping(path="findByIdUtilisateur/{id_utilisateur)")
+    public Utilisateur findByIdUtilisateur(Long idUtilisateur) {
+        return utilisateurService.findByIdUtilisateur(idUtilisateur);
     }
 
     @PostMapping

@@ -21,23 +21,44 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
     }
+    
+    // ------------> GET
+    
+    // LISTE UTILISATEURS
 
     @Override
     @org.springframework.transaction.annotation.Transactional
-    public List<Utilisateur> getUtilisateurs() {
+    public List<Utilisateur> listeUtilisateurs() {
         return utilisateurRepository.findAll();
     }
+    
+    // UTILISATEUR BY ID
+
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public Utilisateur findByIdUtilisateur(Long idUtilisateur) {
+        Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findByIdUtilisateur(idUtilisateur);
+        if(utilisateurOptional.isPresent()) {
+            throw new IllegalStateException("Cet id n'existe pas");
+        }
+        return utilisateurOptional.get();
+    }
+    
+    // ------------> POST
+    
+    // NOUVEL UTILISATEUR
 
     @Override
     @org.springframework.transaction.annotation.Transactional
     public void addNewUtilisateur(Utilisateur utilisateur) {
-        Optional<Utilisateur> utilisateurOptional = utilisateurRepository
-                .findUtilisateurByEmail(utilisateur.getEmailUtilisateur());
+        Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findByEmailUtilisateur(utilisateur.getEmailUtilisateur());
         if(utilisateurOptional.isPresent()) {
             throw new IllegalStateException("Cet email est déjà utilisé");
         }
         utilisateurRepository.save(utilisateur);
     }
+    
+    // ------------> DELETE
 
     @Override
     @org.springframework.transaction.annotation.Transactional
@@ -48,6 +69,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         }
         utilisateurRepository.deleteById(idUtilisateur);
     }
+    
+    // ------------> PUT
 
     @Override
     @org.springframework.transaction.annotation.Transactional
@@ -55,7 +78,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public void updateUtilisateur(Long idUtilisateur, String emailUtilisateur, String motPasseUtilisateur) {
         Utilisateur utilisateur = utilisateurRepository.findById(idUtilisateur).orElseThrow(() -> new IllegalStateException("L'utilisateur avec l'ID : " + idUtilisateur + " n'existe pas..."));
         if(emailUtilisateur != null && emailUtilisateur.length() > 0 && !Objects.equals(utilisateur.getEmailUtilisateur(), emailUtilisateur)) {
-            Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findUtilisateurByEmail(emailUtilisateur);
+            Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findByEmailUtilisateur(emailUtilisateur);
             if(optionalUtilisateur.isPresent()) {
                 throw new IllegalStateException("Cet email est déjà utilisé");
             }
