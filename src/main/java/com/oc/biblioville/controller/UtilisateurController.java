@@ -26,6 +26,8 @@ public class UtilisateurController {
     public UtilisateurController(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
     }
+    
+    // ------------> GET
 
     @GetMapping(path="listeUtilisateurs")
     public List<Utilisateur> listeUtilisateurs() {
@@ -36,16 +38,22 @@ public class UtilisateurController {
     public Utilisateur findByIdUtilisateur(@PathVariable("id_utilisateur") Long idUtilisateur) {
         return utilisateurService.findByIdUtilisateur(idUtilisateur);
     }
+    
+    // ------------> POST
 
     @PostMapping
     public void addNewUtilisateur(@RequestBody Utilisateur utilisateur) {
         utilisateurService.addNewUtilisateur(utilisateur);
     }
+    
+    // ------------> DELETE
 
     @DeleteMapping(path="{id_utilisateur}")
     public void deleteUtilisateur(@PathVariable("id_utilisateur") Long idUtilisateur) {
         utilisateurService.deleteUtilisateur(idUtilisateur);
     }
+    
+    // ------------> PUT
 
     @PutMapping(path="{id_utilisateur}")
     public void updateUtilisateur(

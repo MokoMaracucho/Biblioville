@@ -13,15 +13,6 @@ import javax.persistence.Table;
 public class Utilisateur {
 
     @Id
-    @SequenceGenerator(
-            name ="utilisateur_sequence",
-            sequenceName = "utilisateur_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "utilisateur_sequence"
-    )
 	@Column(name="id_utilisateur", updatable=false)
     private Long idUtilisateur;
 	@Column(name="email_utilisateur")
