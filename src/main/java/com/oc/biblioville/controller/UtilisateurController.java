@@ -32,8 +32,8 @@ public class UtilisateurController {
         return utilisateurService.listeUtilisateurs();
     }
 
-    @GetMapping(path="findByIdUtilisateur/{id_utilisateur)")
-    public Utilisateur findByIdUtilisateur(Long idUtilisateur) {
+    @GetMapping(path="{id_utilisateur}")
+    public Utilisateur findByIdUtilisateur(@PathVariable("id_utilisateur") Long idUtilisateur) {
         return utilisateurService.findByIdUtilisateur(idUtilisateur);
     }
 
@@ -43,7 +43,7 @@ public class UtilisateurController {
     }
 
     @DeleteMapping(path="{id_utilisateur}")
-    public void deleteUtilisateur(@PathVariable("idUtilisateur") Long idUtilisateur) {
+    public void deleteUtilisateur(@PathVariable("id_utilisateur") Long idUtilisateur) {
         utilisateurService.deleteUtilisateur(idUtilisateur);
     }
 

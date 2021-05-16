@@ -15,5 +15,5 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
     Optional<Utilisateur> findByEmailUtilisateur(String emailUtilisateur);
 
     @Query("SELECT u FROM Utilisateur u WHERE u.idUtilisateur = ?1")
-    Optional<Utilisateur> findByIdUtilisateur(Long idUtilisateur);
+    Utilisateur findByIdUtilisateur(Long idUtilisateur);
 }

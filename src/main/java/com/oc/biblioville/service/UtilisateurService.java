@@ -1,7 +1,6 @@
 package com.oc.biblioville.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.oc.biblioville.entity.Utilisateur;
 

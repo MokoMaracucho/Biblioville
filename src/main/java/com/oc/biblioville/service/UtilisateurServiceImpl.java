@@ -37,11 +37,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     @org.springframework.transaction.annotation.Transactional
     public Utilisateur findByIdUtilisateur(Long idUtilisateur) {
-        Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findByIdUtilisateur(idUtilisateur);
-        if(utilisateurOptional.isPresent()) {
-            throw new IllegalStateException("Cet id n'existe pas");
-        }
-        return utilisateurOptional.get();
+        Utilisateur utilisateur = utilisateurRepository.findByIdUtilisateur(idUtilisateur);
+        return utilisateur;
     }
     
     // ------------> POST
