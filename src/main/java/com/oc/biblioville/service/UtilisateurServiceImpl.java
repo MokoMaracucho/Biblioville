@@ -48,10 +48,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     @org.springframework.transaction.annotation.Transactional
     public void addNewUtilisateur(Utilisateur utilisateur) {
-        Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findByEmailUtilisateur(utilisateur.getEmailUtilisateur());
-        if(utilisateurOptional.isPresent()) {
-            throw new IllegalStateException("Cet email est déjà utilisé");
-        }
+//        Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findByEmailUtilisateur(utilisateur.getEmailUtilisateur());
+//        if(utilisateurOptional.isPresent()) {
+//            throw new IllegalStateException("Cet email est déjà utilisé");
+//        }
         utilisateurRepository.save(utilisateur);
     }
     

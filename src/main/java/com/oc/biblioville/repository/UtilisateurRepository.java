@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 
-    @Query("SELECT u FROM Utilisateur u WHERE u.emailUtilisateur = ?1")
-    Optional<Utilisateur> findByEmailUtilisateur(String emailUtilisateur);
-
     @Query("SELECT u FROM Utilisateur u WHERE u.idUtilisateur = ?1")
     Utilisateur findByIdUtilisateur(Long idUtilisateur);
+
+    @Query("SELECT u FROM Utilisateur u WHERE u.emailUtilisateur = ?1")
+    Optional<Utilisateur> findByEmailUtilisateur(String emailUtilisateur);
 }
