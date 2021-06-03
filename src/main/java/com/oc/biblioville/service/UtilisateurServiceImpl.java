@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oc.biblioville.entity.EmailUtilisateur;
 import com.oc.biblioville.entity.Utilisateur;
 import com.oc.biblioville.repository.UtilisateurRepository;
 
@@ -72,17 +73,38 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     @org.springframework.transaction.annotation.Transactional
     @Transactional
-    public void updateUtilisateur(Long idUtilisateur, String emailUtilisateur, String motPasseUtilisateur) {
-        Utilisateur utilisateur = utilisateurRepository.findById(idUtilisateur).orElseThrow(() -> new IllegalStateException("L'utilisateur avec l'ID : " + idUtilisateur + " n'existe pas..."));
-        if(emailUtilisateur != null && emailUtilisateur.length() > 0 && !Objects.equals(utilisateur.getEmailUtilisateur(), emailUtilisateur)) {
-            Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findByEmailUtilisateur(emailUtilisateur);
-            if(optionalUtilisateur.isPresent()) {
-                throw new IllegalStateException("Cet email est déjà utilisé");
-            }
-            utilisateur.setEmailUtilisateur(emailUtilisateur);
+    public void updateUtilisateur(Long idUtilisateur, String email_utilisateur, String motPasseUtilisateur) {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setIdUtilisateur(idUtilisateur);
+        utilisateur.setEmailUtilisateur(email_utilisateur);
+        utilisateur.setMotPasseUtilisateur(motPasseUtilisateur);;
+//        		utilisateurRepository.findById(idUtilisateur).orElseThrow(() -> new IllegalStateException("L'utilisateur avec l'ID : " + idUtilisateur + " n'existe pas..."));
+//        if(emailUtilisateur != null && emailUtilisateur.length() > 0 && !Objects.equals(utilisateur.getEmailUtilisateur(), emailUtilisateur)) {
+//            Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findByEmailUtilisateur(emailUtilisateur);
+//            if(optionalUtilisateur.isPresent()) {
+//                throw new IllegalStateException("Cet email est déjà utilisé");
+//            }
+//            utilisateur.setEmailUtilisateur(emailUtilisateur);
+//        }
+        if(email_utilisateur != null && email_utilisateur.length() > 0) {
+            utilisateur.setEmailUtilisateur(email_utilisateur);
         }
-        if(motPasseUtilisateur != null && motPasseUtilisateur.length() > 0 && !Objects.equals(utilisateur.getMotPasseUtilisateur(), motPasseUtilisateur)) {
+//        if(motPasseUtilisateur != null && motPasseUtilisateur.length() > 0 && !Objects.equals(utilisateur.getMotPasseUtilisateur(), motPasseUtilisateur)) {
+//            utilisateur.setMotPasseUtilisateur(motPasseUtilisateur);
+//        }
+        if(motPasseUtilisateur != null && motPasseUtilisateur.length() > 0) {
             utilisateur.setMotPasseUtilisateur(motPasseUtilisateur);
         }
+        utilisateurRepository.saveAndFlush(utilisateur);
     }
+
+	@Override
+	public void putUtilisateur(Utilisateur utilisateur, Long id_utilisateur) {
+    	utilisateurRepository.save(utilisateur);
+	}
+
+	@Override
+	public void patchUtilisateur(EmailUtilisateur emailUtilisateur, Long id_utilisateur) {
+    	utilisateurRepository.save(emailUtilisateur);
+	}
 }
